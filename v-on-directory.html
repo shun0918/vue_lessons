@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+</style>
+
+<body>
+    <div id="app">
+        <p>現在{{ number }}回クリックされています</p>
+        <button @[event]="countUp(2)">カウントアップ</button>
+        <p v-on:mousemove="changeMousePosition(3, $event)">マウスを載せてください
+            <span v-on:mousemove.stop>反応しないでください</span>
+        </p>
+        <a v-on:click.prevent="" href="https://google.com">Google</a>
+        <p>X:{{x}}, Y:{{y}}</p>
+        <input type="text" v-on:keyup.enter="myAlert">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                event: 'click',
+                number: 0,
+                x:0,
+                y:0
+            },
+            methods: {
+                countUp: function(times){
+                    this.number += times
+                },
+                changeMousePosition: function(divideNum, event) {
+                    // console.log(event);
+                    
+                    this.x = event.clientX / divideNum;
+                    this.y = event.clientY / divideNum;
+                },
+                noEvent: function(event){
+                    // event.stopPropagation()
+                    // event.preventDefault();
+                },
+                myAlert(){
+                    alert("アラート！");
+                }
+            }
+        });
+    </script>
+</body>
+</html>

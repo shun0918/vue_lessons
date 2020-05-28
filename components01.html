@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .danger {
+            font-weight: bold;
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <a href="https://jp.vuejs.org/v2/guide/components-registration.html#%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0">参考</a>
+    <div id="app">
+        <component-01 id="app">やあ</component-01>
+        <component-02 id="app">やあ</component-02>
+        <component-03 id="app">やあ</component-03>
+        <component-b id="app" :is-active="isActive">やあ</component-b>
+        <compo id="app">やあ</compo>
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('component-01', {
+            template: `
+                <div>
+                    <h1><slot></slot></h1>
+                </div>
+            `
+        })
+        Vue.component('component-02', {
+            template: `
+                <div>
+                    <h2><slot></slot></h2>
+                </div>
+            `
+        })
+        Vue.component('component-03', {
+            template: `
+                <div>
+                    <h3><slot></slot></h3>
+                </div>
+            `
+        })
+
+        var ComponentA = {
+            template:`
+                <div>
+                    <h4><slot></slot></h4>
+                </div>
+            `
+        }
+
+        var ComponentB = {
+            conponents: {
+                compo: ComponentA
+            },
+            props: ['isActive'],
+            template: `
+                <div>
+                    <p><slot></slot></p>
+                </div>
+            `
+        }
+
+        new Vue({
+            el: '#app',
+            data: {
+                isActive: true
+            },
+            components: {
+                'component-b': ComponentB,
+                'compo':ComponentA
+            }
+        })
+    </script>
+</body>
+</html>

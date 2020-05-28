@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue_lessons</title>
+    <title>Document</title>
 </head>
+<style>
+</style>
+
 <body>
-    <h1>Vue.jsの学習</h1>
     <div id="app">
-        <!-- {{ message }} -->
-        <p v-if="error">ディレクティブ</p>
+        <input type="text" v-model="message">
+        <h1>{{message}}</h1>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         var app = new Vue({
             el: "#app",
             data: {
-                // message: "vue.js"
-                // error: true
-                error: false
+                message : 'こんにちは'
             }
         });
     </script>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .danger {
+            font-weight: bold;
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <blog-post v-bind="post"></blog-post>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('blog-post', {
+            props: {
+                title: String,
+                likes: Number,
+                isPublished: Boolean,
+                commentIds: Array,
+                author:Object,
+                callback: Function,
+                contactsPromise: Promise
+            }
+            ,template:`
+            <div>
+                <h3>{{title}}</h3>
+                <p>No.{{likes}} author:{{author.name}}</p>
+            </div>
+            `
+        })
+        
+        new Vue({
+            el:'#app',
+            data:{
+                post: {
+                    title : 'My jouryney with Vue',
+                    author: {name : 'shun'},
+                    likes: 42
+                }
+            }
+                
+
+        })
+    </script>
+</body>
